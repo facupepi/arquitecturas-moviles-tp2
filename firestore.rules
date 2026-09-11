@@ -1,0 +1,46 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Cada usuario entra únicamente a lo que cuelga de su identificador.
+    // Sin sesión iniciada no se lee ni se escribe nada.
+    function esDueno(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+
+    match /usuarios/{uid}/gastos/{gasto} {
+      allow read, delete: if esDueno(uid);
+
+      // Al crear o modificar se valida la forma del dato, para que la base no
+      // termine con montos negativos ni con textos de largo arbitrario.
+      // La categoría ya no se compara contra una lista fija: ahora las define
+      // el usuario, así que acá sólo se exige que sea una referencia válida.
+      allow create, update: if esDueno(uid)
+        && request.resource.data.monto is number
+        && request.resource.data.monto > 0
+        && request.resource.data.categoria is string
+        && request.resource.data.categoria.size() <= 40
+        && request.resource.data.detalle is string
+        && request.resource.data.detalle.size() <= 120;
+    }
+
+    match /usuarios/{uid}/categorias/{categoria} {
+      allow read, delete: if esDueno(uid);
+
+      allow create, update: if esDueno(uid)
+        && request.resource.data.nombre is string
+        && request.resource.data.nombre.size() > 0
+        && request.resource.data.nombre.size() <= 20
+        && request.resource.data.color.matches('^#[0-9A-Fa-f]{6}$')
+        && request.resource.data.icono is string
+        && request.resource.data.icono.size() <= 20
+        && request.resource.data.orden is int;
+    }
+
+    // Todo lo que no esté declarado arriba queda cerrado.
+    match /{documento=**} {
+      allow read, write: if false;
+    }
+  }
+}

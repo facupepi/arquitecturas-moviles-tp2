@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mis Gastos</string>
+
+    <!-- Entrada -->
+    <string name="lema">Anotá lo que gastás</string>
+    <string name="bajada">Cargá un gasto en segundos y mirá cuánto llevás en el mes.</string>
+    <string name="btn_entrar">Entrar con Google</string>
+    <string name="sin_cuentas">No hay ninguna cuenta de Google en este teléfono</string>
+    <string name="error_entrada">No se pudo entrar. Probá de nuevo.</string>
+    <string name="btn_agregar_cuenta">Agregar una cuenta de Google al teléfono</string>
+    <string name="aviso_privacidad">Tus gastos quedan guardados en tu cuenta y sólo los ves vos.</string>
+
+    <!-- Resumen -->
+    <string name="titulo_resumen">Mis gastos</string>
+    <string name="btn_agregar">Agregar gasto</string>
+    <string name="btn_salir">Cerrar sesión</string>
+    <string name="sin_pantalla_cuentas">Este teléfono no permite agregar cuentas desde acá</string>
+
+    <!-- Resumen -->
+    <string name="saludo">Hola, %1$s</string>
+    <string name="gastado_este_mes">Gastado este mes</string>
+    <plurals name="cantidad_gastos">
+        <item quantity="one">%d gasto registrado</item>
+        <item quantity="other">%d gastos registrados</item>
+    </plurals>
+    <string name="ultimos_gastos">Últimos gastos</string>
+    <plurals name="resto_gastos">
+        <item quantity="one">y %d gasto más</item>
+        <item quantity="other">y %d gastos más</item>
+    </plurals>
+
+    <!-- Tramo de tiempo del resumen -->
+    <string name="periodo_este_mes">Este mes</string>
+    <string name="periodo_mes_pasado">Mes pasado</string>
+    <string name="periodo_este_anio">Este año</string>
+    <string name="periodo_todo">Todo</string>
+    <string name="gastado_mes_pasado">Gastado el mes pasado</string>
+    <string name="gastado_este_anio">Gastado este año</string>
+    <string name="gastado_total">Total gastado</string>
+    <string name="sin_periodo_titulo">Nada por acá</string>
+    <string name="sin_periodo_bajada">No anotaste gastos en este tramo. Probá con otro.</string>
+    <string name="hoy">Hoy</string>
+    <string name="ayer">Ayer</string>
+
+    <!-- Carga de un gasto -->
+    <string name="nuevo_gasto">Nuevo gasto</string>
+    <string name="signo_pesos">$</string>
+    <string name="cero">0</string>
+    <string name="categoria">Categoría</string>
+    <string name="detalle_opcional">Detalle (opcional)</string>
+    <string name="btn_guardar">Guardar</string>
+    <string name="monto_invalido">Escribí un monto</string>
+    <string name="error_guardar">No se pudo guardar. Revisá la conexión.</string>
+    <string name="gasto_guardado">Gasto guardado</string>
+
+    <!-- Gráfico y estado vacío -->
+    <string name="en_que_se_fue">En qué se fue</string>
+    <string name="porcentaje">%1$d%%</string>
+    <string name="chanchito_titulo">El chanchito está vacío</string>
+    <string name="chanchito_bajada">Cargá tu primer gasto y vas a ver acá en qué se te va la plata.</string>
+
+    <!-- Edición y borrado -->
+    <string name="editar_gasto">Editar gasto</string>
+    <string name="gasto_actualizado">Gasto actualizado</string>
+    <string name="borrar_gasto">Borrar gasto</string>
+    <string name="borrar_gasto_aviso">Se va a quitar del resumen del mes. No se puede deshacer.</string>
+    <string name="borrar">Borrar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="gasto_borrado">Gasto borrado</string>
+    <string name="sin_categorias">Creá una categoría antes de cargar un gasto</string>
+
+    <!-- Categorías -->
+    <string name="categorias">Categorías</string>
+    <string name="nueva_categoria">Nueva categoría</string>
+    <string name="editar_categoria">Editar categoría</string>
+    <string name="nombre_categoria">Nombre</string>
+    <string name="color">Color</string>
+    <string name="icono">Ícono</string>
+    <string name="btn_nueva_categoria">Agregar categoría</string>
+    <string name="categoria_guardada">Categoría guardada</string>
+    <string name="categoria_borrada">Categoría borrada</string>
+    <string name="borrar_categoria_aviso">Los gastos que la usaban quedan sin categoría.</string>
+    <string name="nombre_vacio">Poné un nombre</string>
+    <string name="sin_categorias_aun">Todavía no tenés categorías.</string>
+    <string name="categorias_ayuda">Tocá una para cambiarle el nombre, el color o el ícono.</string>
+</resources>

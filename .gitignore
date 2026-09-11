@@ -1,0 +1,15 @@
+# Compilación
+build/
+.gradle/
+captures/
+.externalNativeBuild
+.cxx
+
+# Configuración local de la máquina
+local.properties
+*.iml
+.idea/
+.DS_Store
+
+# Configuración de Firebase: se descarga desde la consola del proyecto
+app/google-services.json

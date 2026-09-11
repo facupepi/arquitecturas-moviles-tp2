@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fondo"
+    android:orientation="vertical"
+    android:padding="28dp">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- Marca -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="88dp"
+        android:layout_height="88dp"
+        android:layout_gravity="center_horizontal"
+        app:cardBackgroundColor="@color/verde"
+        app:cardCornerRadius="26dp"
+        app:cardElevation="0dp">
+
+        <ImageView
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_billetera"
+            app:tint="@color/blanco" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textAppearance="@style/Texto.Cifra"
+        android:textSize="36sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="@string/lema"
+        android:textAlignment="center"
+        android:textAppearance="@style/Texto.Cuerpo"
+        android:textSize="17sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:lineSpacingExtra="4dp"
+        android:text="@string/bajada"
+        android:textAlignment="center"
+        android:textAppearance="@style/Texto.Apoyo" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- Entrada. El botón sigue el formato blanco con el logotipo, que es el que
+         la gente reconoce como acceso con Google. -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="58dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnEntrar"
+            style="@style/Boton.Blanco"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/btn_entrar"
+            app:icon="@drawable/ic_google"
+            app:iconGravity="textStart"
+            app:iconPadding="14dp"
+            app:iconSize="20dp"
+            app:iconTint="@null" />
+
+        <ProgressBar
+            android:id="@+id/progreso"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/verde"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+    <!-- Sólo aparece si el teléfono no tiene ninguna cuenta de Google. -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAgregarCuenta"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/btn_agregar_cuenta"
+        android:textAllCaps="false"
+        android:textSize="15sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/aviso_privacidad"
+        android:textAlignment="center"
+        android:textAppearance="@style/Texto.Apoyo"
+        android:textSize="12sp" />
+
+</LinearLayout>

@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fondo">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="96dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="20dp">
+
+            <!-- Encabezado -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvNombre"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textAppearance="@style/Texto.Titulo"
+                        tools:text="Hola, Facundo" />
+
+                    <TextView
+                        android:id="@+id/tvCuenta"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textAppearance="@style/Texto.Apoyo"
+                        tools:text="alguien@gmail.com" />
+
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCategorias"
+                    style="@style/Widget.Material3.Button.IconButton.Outlined"
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:contentDescription="@string/categorias"
+                    app:icon="@drawable/ic_categorias"
+                    app:iconSize="20dp"
+                    app:strokeColor="@color/borde" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSalir"
+                    style="@style/Widget.Material3.Button.IconButton.Outlined"
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="@string/btn_salir"
+                    app:icon="@drawable/ic_salir"
+                    app:iconSize="20dp"
+                    app:strokeColor="@color/borde" />
+
+            </LinearLayout>
+
+            <!-- Qué tramo de tiempo se está mirando. Sale del borde para que se note
+                 que la fila sigue y se puede desplazar. -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:clipToPadding="false"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:scrollbars="none">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/grupoPeriodo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:selectionRequired="true"
+                    app:singleLine="true"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipEsteMes"
+                        style="@style/ChipPeriodo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="@string/periodo_este_mes" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipMesPasado"
+                        style="@style/ChipPeriodo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/periodo_mes_pasado" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipEsteAnio"
+                        style="@style/ChipPeriodo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/periodo_este_anio" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipTodo"
+                        style="@style/ChipPeriodo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/periodo_todo" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+            </HorizontalScrollView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp">
+
+                <!-- Cuánto se lleva gastado en el tramo elegido -->
+                <com.google.android.material.card.MaterialCardView
+                    style="@style/Tarjeta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    app:cardBackgroundColor="@color/verde"
+                    app:strokeWidth="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="24dp">
+
+                        <TextView
+                            android:id="@+id/tvRotulo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.75"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:letterSpacing="0.06"
+                            android:text="@string/gastado_este_mes"
+                            android:textAllCaps="true"
+                            android:textColor="@color/blanco"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tvTotal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:textAppearance="@style/Texto.Cifra"
+                            android:textColor="@color/blanco"
+                            tools:text="$86.300" />
+
+                        <TextView
+                            android:id="@+id/tvCantidad"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:alpha="0.75"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/blanco"
+                            android:textSize="14sp"
+                            tools:text="7 gastos registrados" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- En qué se fue la plata. Sólo aparece cuando hay algo que repartir. -->
+                <LinearLayout
+                    android:id="@+id/bloqueGrafico"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="26dp"
+                        android:text="@string/en_que_se_fue"
+                        android:textAppearance="@style/Texto.Seccion" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        style="@style/Tarjeta"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:padding="18dp">
+
+                            <ar.edu.utn.frsfco.finanzas.GraficoAnillo
+                                android:id="@+id/grafico"
+                                android:layout_width="118dp"
+                                android:layout_height="118dp" />
+
+                            <LinearLayout
+                                android:id="@+id/leyenda"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical" />
+
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tituloLista"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="26dp"
+                    android:text="@string/ultimos_gastos"
+                    android:textAppearance="@style/Texto.Seccion" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/tarjetaLista"
+                    style="@style/Tarjeta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingStart="16dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="16dp"
+                        android:paddingBottom="8dp">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/lista"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:nestedScrollingEnabled="false"
+                            tools:itemCount="3"
+                            tools:listitem="@layout/item_gasto" />
+
+                        <!-- La lista muestra los más recientes; acá se avisa cuántos
+                             quedaron afuera para que el total no parezca mal sumado. -->
+                        <TextView
+                            android:id="@+id/tvResto"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="4dp"
+                            android:textAlignment="center"
+                            android:textAppearance="@style/Texto.Apoyo"
+                            android:visibility="gone"
+                            tools:text="y 12 gastos más" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Cuando no hay nada para mostrar -->
+                <LinearLayout
+                    android:id="@+id/vacio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingTop="20dp"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="176dp"
+                        android:layout_height="136dp"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ilustracion_sin_gastos" />
+
+                    <TextView
+                        android:id="@+id/tvVacioTitulo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="@string/chanchito_titulo"
+                        android:textAlignment="center"
+                        android:textColor="@color/texto"
+                        android:textSize="19sp" />
+
+                    <TextView
+                        android:id="@+id/tvVacioBajada"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginEnd="24dp"
+                        android:lineSpacingExtra="3dp"
+                        android:text="@string/chanchito_bajada"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/Texto.Apoyo" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/btnAgregar"
+        android:layout_width="wrap_content"
+        android:layout_height="58dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_margin="22dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@string/btn_agregar"
+        android:textAllCaps="false"
+        android:textColor="@color/blanco"
+        android:textSize="16sp"
+        app:backgroundTint="@color/verde"
+        app:cornerRadius="19dp"
+        app:elevation="6dp"
+        app:icon="@drawable/ic_agregar"
+        app:iconTint="@color/blanco" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

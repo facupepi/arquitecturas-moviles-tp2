@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Finanzas" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/verde</item>
+        <item name="colorOnPrimary">@color/blanco</item>
+        <item name="colorPrimaryContainer">@color/verde_suave</item>
+        <item name="colorOnPrimaryContainer">@color/verde_oscuro</item>
+        <item name="colorSurface">@color/superficie</item>
+        <item name="colorOnSurface">@color/texto</item>
+        <item name="colorOnSurfaceVariant">@color/texto_suave</item>
+        <item name="colorOutline">@color/borde</item>
+        <!-- Sin estos, los diálogos y las hojas heredan los tonos lila que trae
+             Material 3 por defecto y desentonan con el verde de la aplicación. -->
+        <item name="colorSurfaceVariant">@color/verde_suave</item>
+        <item name="colorSurfaceContainerLowest">@color/superficie</item>
+        <item name="colorSurfaceContainerLow">@color/superficie</item>
+        <item name="colorSurfaceContainer">@color/superficie</item>
+        <item name="colorSurfaceContainerHigh">@color/superficie</item>
+        <item name="colorSurfaceContainerHighest">@color/fondo</item>
+        <item name="colorSecondaryContainer">@color/verde_suave</item>
+        <item name="colorOnSecondaryContainer">@color/verde_oscuro</item>
+        <item name="android:colorBackground">@color/fondo</item>
+        <item name="android:statusBarColor">@color/fondo</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/fondo</item>
+        <!-- Poppins en toda la aplicación. -->
+        <item name="fontFamily">@font/poppins</item>
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
+
+    <!-- Escala tipográfica.
+         Un solo salto grande para la cifra del mes y tamaños contenidos para el resto,
+         de modo que el número sea siempre lo primero que se lee. -->
+
+    <style name="Texto.Cifra" parent="TextAppearance.Material3.DisplayLarge">
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:textSize">46sp</item>
+        <item name="android:letterSpacing">-0.03</item>
+        <item name="android:textColor">@color/texto</item>
+    </style>
+
+    <style name="Texto.Titulo" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:textColor">@color/texto</item>
+    </style>
+
+    <style name="Texto.Seccion" parent="TextAppearance.Material3.TitleSmall">
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:letterSpacing">0.06</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/texto_suave</item>
+    </style>
+
+    <style name="Texto.Cuerpo" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/texto</item>
+    </style>
+
+    <style name="Texto.Apoyo" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/texto_suave</item>
+    </style>
+
+    <style name="Tarjeta" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardCornerRadius">22dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="strokeColor">@color/borde</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="cardBackgroundColor">@color/superficie</item>
+    </style>
+
+    <!-- Fichas para elegir el tramo de tiempo del resumen. -->
+    <style name="ChipPeriodo" parent="Widget.Material3.Chip.Filter">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textSize">13sp</item>
+        <item name="chipMinHeight">36dp</item>
+        <item name="chipStrokeColor">@color/borde</item>
+        <item name="android:checkable">true</item>
+    </style>
+
+    <style name="Boton" parent="Widget.Material3.Button">
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="cornerRadius">16dp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="Boton.Blanco" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="cornerRadius">16dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/texto</item>
+        <item name="backgroundTint">@color/superficie</item>
+        <item name="strokeColor">@color/borde</item>
+    </style>
+
+</resources>

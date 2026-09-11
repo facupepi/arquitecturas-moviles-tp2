@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Alcancía contenta esperando la primera moneda, para que la lista vacía
+     se lea como una invitación y no como un error. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="180dp"
+    android:height="140dp"
+    android:viewportWidth="180"
+    android:viewportHeight="140">
+
+    <!-- Monedas cayendo hacia la ranura -->
+    <path
+        android:fillColor="#F5C518"
+        android:pathData="M95,14m-8,0a8,8 0,1 1,16 0a8,8 0,1 1,-16 0" />
+    <path
+        android:fillColor="#E0AC0B"
+        android:pathData="M95,14m-3.5,0a3.5,3.5 0,1 1,7 0a3.5,3.5 0,1 1,-7 0" />
+    <path
+        android:fillColor="#F5C518"
+        android:pathData="M71,34m-11,0a11,11 0,1 1,22 0a11,11 0,1 1,-22 0" />
+    <path
+        android:fillColor="#E0AC0B"
+        android:pathData="M71,34m-4.5,0a4.5,4.5 0,1 1,9 0a4.5,4.5 0,1 1,-9 0" />
+
+    <!-- Patas -->
+    <path
+        android:fillColor="#0E5540"
+        android:pathData="M58,100h16v18a8,8 0,0 1,-16 0z" />
+    <path
+        android:fillColor="#0E5540"
+        android:pathData="M98,100h16v18a8,8 0,0 1,-16 0z" />
+
+    <!-- Colita -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#0E5540"
+        android:strokeWidth="5"
+        android:strokeLineCap="round"
+        android:pathData="M42,76c-9,-3 -11,-9 -7,-13c3,-3 8,-2 8,3" />
+
+    <!-- Oreja -->
+    <path
+        android:fillColor="#0E5540"
+        android:pathData="M103,55l18,-6l-4,18z" />
+
+    <!-- Cuerpo -->
+    <path
+        android:fillColor="#12674B"
+        android:pathData="M40,82a45,31 0,1 0,90 0a45,31 0,1 0,-90 0" />
+
+    <!-- Hocico -->
+    <path
+        android:fillColor="#0E5540"
+        android:pathData="M129,84m-13,0a13,13 0,1 1,26 0a13,13 0,1 1,-26 0" />
+    <path
+        android:fillColor="#0A4432"
+        android:pathData="M126,84m-2.2,0a2.2,3.4 0,1 1,4.4 0a2.2,3.4 0,1 1,-4.4 0" />
+    <path
+        android:fillColor="#0A4432"
+        android:pathData="M134,84m-2.2,0a2.2,3.4 0,1 1,4.4 0a2.2,3.4 0,1 1,-4.4 0" />
+
+    <!-- Ranura, con la moneda a punto de entrar -->
+    <path
+        android:fillColor="#0A4432"
+        android:pathData="M64,58h30a3,3 0,0 1,0 6h-30a3,3 0,0 1,0 -6z" />
+
+    <!-- Ojo feliz: el arco hacia arriba es lo que la hace sonreír -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#0A4432"
+        android:strokeWidth="4.5"
+        android:strokeLineCap="round"
+        android:pathData="M96,75q5.5,-8 11,0" />
+
+    <!-- Cachete -->
+    <path
+        android:fillColor="#1C8460"
+        android:pathData="M104,91m-6,0a6,4 0,1 1,12 0a6,4 0,1 1,-12 0" />
+
+    <!-- Piso -->
+    <path
+        android:fillColor="#DDE7E2"
+        android:pathData="M34,128h112a2,2 0,0 1,0 4h-112a2,2 0,0 1,0 -4z" />
+
+</vector>
