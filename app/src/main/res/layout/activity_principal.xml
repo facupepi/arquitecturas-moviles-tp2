@@ -8,10 +8,11 @@
     android:background="@color/fondo">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/desplazable"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:paddingBottom="96dp">
+        android:paddingBottom="150dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,66 +20,37 @@
             android:orientation="vertical"
             android:paddingTop="20dp">
 
-            <!-- Encabezado -->
+            <!-- Encabezado. Los accesos a otras pantallas se mudaron al menú de
+                 abajo: acá eran dos botones sin texto que nadie entendía. -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp">
 
-                <LinearLayout
-                    android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/tvNombre"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textAppearance="@style/Texto.Titulo"
+                    tools:text="Hola, Facundo" />
 
-                    <TextView
-                        android:id="@+id/tvNombre"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:maxLines="1"
-                        android:textAppearance="@style/Texto.Titulo"
-                        tools:text="Hola, Facundo" />
-
-                    <TextView
-                        android:id="@+id/tvCuenta"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:maxLines="1"
-                        android:textAppearance="@style/Texto.Apoyo"
-                        tools:text="alguien@gmail.com" />
-
-                </LinearLayout>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnCategorias"
-                    style="@style/Widget.Material3.Button.IconButton.Outlined"
-                    android:layout_width="46dp"
-                    android:layout_height="46dp"
-                    android:contentDescription="@string/categorias"
-                    app:icon="@drawable/ic_categorias"
-                    app:iconSize="20dp"
-                    app:strokeColor="@color/borde" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnSalir"
-                    style="@style/Widget.Material3.Button.IconButton.Outlined"
-                    android:layout_width="46dp"
-                    android:layout_height="46dp"
-                    android:layout_marginStart="8dp"
-                    android:contentDescription="@string/btn_salir"
-                    app:icon="@drawable/ic_salir"
-                    app:iconSize="20dp"
-                    app:strokeColor="@color/borde" />
+                <TextView
+                    android:id="@+id/tvCuenta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textAppearance="@style/Texto.Apoyo"
+                    tools:text="alguien@gmail.com" />
 
             </LinearLayout>
 
-            <!-- Qué tramo de tiempo se está mirando. Sale del borde para que se note
-                 que la fila sigue y se puede desplazar. -->
+            <!-- Qué período se está mirando. Sale del borde para que se note que la
+                 fila sigue y se puede desplazar. -->
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -136,7 +108,7 @@
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp">
 
-                <!-- Cuánto se lleva gastado en el tramo elegido -->
+                <!-- La cifra del período. Con ingresos cargados pasa a ser el saldo. -->
                 <com.google.android.material.card.MaterialCardView
                     style="@style/Tarjeta"
                     android:layout_width="match_parent"
@@ -170,7 +142,7 @@
                             android:layout_marginTop="6dp"
                             android:textAppearance="@style/Texto.Cifra"
                             android:textColor="@color/blanco"
-                            tools:text="$86.300" />
+                            tools:text="$473.700" />
 
                         <TextView
                             android:id="@+id/tvCantidad"
@@ -181,13 +153,46 @@
                             android:fontFamily="@font/poppins_regular"
                             android:textColor="@color/blanco"
                             android:textSize="14sp"
-                            tools:text="7 gastos registrados" />
+                            tools:text="7 movimientos registrados" />
+
+                        <!-- El desglose. Antes iba todo en una línea separada por
+                             puntos medios y costaba leerlo; ahora cada dato tiene
+                             su renglón y su ícono. -->
+                        <LinearLayout
+                            android:id="@+id/bloqueDesglose"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="18dp"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:alpha="0.25"
+                                android:background="@color/blanco" />
+
+                            <include
+                                android:id="@+id/filaIngresos"
+                                layout="@layout/fila_desglose"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="14dp" />
+
+                            <include
+                                android:id="@+id/filaGastos"
+                                layout="@layout/fila_desglose"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- En qué se fue la plata. Sólo aparece cuando hay algo que repartir. -->
+                <!-- Distribución por categoría. Sólo aparece si hay algo que repartir. -->
                 <LinearLayout
                     android:id="@+id/bloqueGrafico"
                     android:layout_width="match_parent"
@@ -208,24 +213,28 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp">
 
+                        <!-- Apilado: el anillo arriba y la leyenda debajo. Al costado
+                             la leyenda quedaba angosta y los nombres se cortaban. -->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal"
-                            android:padding="18dp">
+                            android:orientation="vertical"
+                            android:paddingStart="18dp"
+                            android:paddingTop="22dp"
+                            android:paddingEnd="18dp"
+                            android:paddingBottom="14dp">
 
                             <ar.edu.utn.frsfco.finanzas.GraficoAnillo
                                 android:id="@+id/grafico"
-                                android:layout_width="118dp"
-                                android:layout_height="118dp" />
+                                android:layout_width="168dp"
+                                android:layout_height="168dp"
+                                android:layout_gravity="center_horizontal" />
 
                             <LinearLayout
                                 android:id="@+id/leyenda"
-                                android:layout_width="0dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_weight="1"
+                                android:layout_marginTop="18dp"
                                 android:orientation="vertical" />
 
                         </LinearLayout>
@@ -234,13 +243,38 @@
 
                 </LinearLayout>
 
-                <TextView
+                <!-- Título de la lista, con el filtro activo si hay uno -->
+                <LinearLayout
                     android:id="@+id/tituloLista"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="26dp"
-                    android:text="@string/ultimos_gastos"
-                    android:textAppearance="@style/Texto.Seccion" />
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvTituloLista"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/ultimos_gastos"
+                        android:textAppearance="@style/Texto.Seccion" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnQuitarFiltro"
+                        style="@style/Widget.Material3.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:minWidth="0dp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:text="@string/quitar_filtro"
+                        android:textAllCaps="false"
+                        android:textSize="13sp"
+                        android:visibility="gone" />
+
+                </LinearLayout>
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/tarjetaLista"
@@ -266,18 +300,17 @@
                             tools:itemCount="3"
                             tools:listitem="@layout/item_gasto" />
 
-                        <!-- La lista muestra los más recientes; acá se avisa cuántos
-                             quedaron afuera para que el total no parezca mal sumado. -->
-                        <TextView
-                            android:id="@+id/tvResto"
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnVerTodos"
+                            style="@style/Widget.Material3.Button.TextButton"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingTop="10dp"
-                            android:paddingBottom="4dp"
-                            android:textAlignment="center"
-                            android:textAppearance="@style/Texto.Apoyo"
+                            android:layout_height="46dp"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textAllCaps="false"
+                            android:textSize="14sp"
                             android:visibility="gone"
-                            tools:text="y 12 gastos más" />
+                            tools:text="Ver los 32 movimientos" />
 
                     </LinearLayout>
 
@@ -333,18 +366,22 @@
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/btnAgregar"
         android:layout_width="wrap_content"
-        android:layout_height="58dp"
+        android:layout_height="56dp"
         android:layout_gravity="bottom|center_horizontal"
-        android:layout_margin="22dp"
+        android:layout_marginBottom="86dp"
         android:fontFamily="@font/poppins_semibold"
         android:text="@string/btn_agregar"
         android:textAllCaps="false"
         android:textColor="@color/blanco"
         android:textSize="16sp"
         app:backgroundTint="@color/verde"
-        app:cornerRadius="19dp"
+        app:cornerRadius="18dp"
         app:elevation="6dp"
         app:icon="@drawable/ic_agregar"
         app:iconTint="@color/blanco" />
+
+    <include
+        android:id="@+id/navegacion"
+        layout="@layout/barra_navegacion" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

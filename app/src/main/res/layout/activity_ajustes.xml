@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fondo">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="110dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/barra"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/fondo"
+            app:title="@string/ajustes"
+            app:titleTextAppearance="@style/Texto.Titulo" />
+
+        <!-- Sólo para quien está probando sin cuenta. Sin esto tendría que cerrar
+             sesión para entrar con Google, y ahí perdería lo que cargó. -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/tarjetaInvitado"
+            style="@style/Tarjeta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:visibility="gone"
+            app:cardBackgroundColor="@color/verde_suave"
+            app:strokeColor="@color/verde">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="@string/invitado_titulo"
+                    android:textColor="@color/verde_oscuro"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:lineSpacingExtra="3dp"
+                    android:text="@string/invitado_bajada"
+                    android:textAppearance="@style/Texto.Apoyo" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="14dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnVincular"
+                        style="@style/Boton.Blanco"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/btn_entrar"
+                        android:textSize="15sp"
+                        app:icon="@drawable/ic_google"
+                        app:iconGravity="textStart"
+                        app:iconPadding="12dp"
+                        app:iconSize="18dp"
+                        app:iconTint="@null" />
+
+                    <ProgressBar
+                        android:id="@+id/progresoVincular"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:indeterminateTint="@color/verde"
+                        android:visibility="gone" />
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Lo que entra -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/ingresos"
+            android:textAppearance="@style/Texto.Seccion" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="20dp"
+            android:lineSpacingExtra="3dp"
+            android:text="@string/ingresos_ayuda"
+            android:textAppearance="@style/Texto.Apoyo" />
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Tarjeta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <LinearLayout
+                    android:id="@+id/listaIngresos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+                <TextView
+                    android:id="@+id/vacioIngresos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="14dp"
+                    android:text="@string/sin_ingresos"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/Texto.Apoyo"
+                    android:visibility="gone" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnNuevoIngreso"
+                    style="@style/Boton.Blanco"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/agregar_ingreso"
+                    android:textSize="14sp"
+                    app:icon="@drawable/ic_agregar"
+                    app:iconSize="18dp"
+                    app:iconTint="@color/verde" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Gastos fijos -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/gastos_fijos"
+            android:textAppearance="@style/Texto.Seccion" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="20dp"
+            android:lineSpacingExtra="3dp"
+            android:text="@string/fijos_ayuda"
+            android:textAppearance="@style/Texto.Apoyo" />
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Tarjeta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <LinearLayout
+                    android:id="@+id/listaFijos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+                <TextView
+                    android:id="@+id/vacioFijos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="14dp"
+                    android:text="@string/sin_fijos"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/Texto.Apoyo"
+                    android:visibility="gone" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnNuevoFijo"
+                    style="@style/Boton.Blanco"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/agregar_fijo"
+                    android:textSize="14sp"
+                    app:icon="@drawable/ic_agregar"
+                    app:iconSize="18dp"
+                    app:iconTint="@color/verde" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Medios de pago -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/medios_pago"
+            android:textAppearance="@style/Texto.Seccion" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="20dp"
+            android:lineSpacingExtra="3dp"
+            android:text="@string/medios_ayuda"
+            android:textAppearance="@style/Texto.Apoyo" />
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Tarjeta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <LinearLayout
+                    android:id="@+id/listaMedios"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+                <TextView
+                    android:id="@+id/vacioMedios"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="14dp"
+                    android:text="@string/sin_medios"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/Texto.Apoyo"
+                    android:visibility="gone" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnNuevoMedio"
+                    style="@style/Boton.Blanco"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/agregar_medio"
+                    android:textSize="14sp"
+                    app:icon="@drawable/ic_agregar"
+                    app:iconSize="18dp"
+                    app:iconTint="@color/verde" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Copia de los datos y salida -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/tus_datos"
+            android:textAppearance="@style/Texto.Seccion" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnExportar"
+            style="@style/Boton.Blanco"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/exportar"
+            android:textSize="15sp"
+            app:icon="@drawable/ic_exportar"
+            app:iconSize="19dp"
+            app:iconTint="@color/texto" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSalir"
+            style="@style/Boton.Blanco"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/btn_salir"
+            android:textColor="@color/rojo"
+            android:textSize="15sp"
+            app:icon="@drawable/ic_salir"
+            app:iconSize="19dp"
+            app:iconTint="@color/rojo" />
+
+    </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <include
+        android:id="@+id/navegacion"
+        layout="@layout/barra_navegacion" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

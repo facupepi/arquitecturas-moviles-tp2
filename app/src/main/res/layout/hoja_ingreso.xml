@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Va dentro de un contenedor desplazable: con el teclado abierto, el botón de
-     guardar quedaba tapado y no había manera de llegar a él. -->
 <androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -17,7 +15,6 @@
         android:paddingEnd="24dp"
         android:paddingBottom="24dp">
 
-        <!-- Barrita de arrastre, la señal de que la hoja se cierra deslizando -->
         <View
             android:layout_width="40dp"
             android:layout_height="4dp"
@@ -29,10 +26,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
-            android:text="@string/nuevo_gasto"
+            android:text="@string/nuevo_ingreso"
             android:textAppearance="@style/Texto.Titulo" />
 
-        <!-- El monto es lo primero y lo más grande: es el único dato obligatorio. -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,11 +52,11 @@
                 android:layout_marginStart="6dp"
                 android:layout_weight="1"
                 android:background="@null"
+                android:digits="0123456789.,"
                 android:fontFamily="@font/poppins_bold"
                 android:hint="@string/cero"
                 android:importantForAutofill="no"
                 android:inputType="numberDecimal"
-                android:digits="0123456789.,"
                 android:maxLength="14"
                 android:textColor="@color/texto"
                 android:textColorHint="@color/borde"
@@ -73,8 +69,7 @@
             android:layout_height="1dp"
             android:background="@color/borde" />
 
-        <!-- Casi nadie anota en el momento de pagar: la mayoría carga a la noche o
-             el fin de semana, así que la fecha tiene que poder corregirse. -->
+        <!-- Casi nadie cobra el mismo día en que se acuerda de anotarlo. -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnFecha"
             style="@style/Boton.Blanco"
@@ -88,43 +83,13 @@
             app:iconSize="18dp"
             app:iconTint="@color/texto_suave" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
-            android:text="@string/categoria"
-            android:textAppearance="@style/Texto.Seccion" />
-
-        <!-- Las categorías del usuario. Sin lista desplegable: se elige de un toque. -->
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/grupoCategorias"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:singleSelection="true" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/medio_pago"
-            android:textAppearance="@style/Texto.Seccion" />
-
-        <!-- Las fichas se arman en el código: los medios los define el usuario. -->
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/grupoMedios"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:singleSelection="true" />
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilDetalle"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="@string/detalle_opcional"
+            android:hint="@string/detalle_ingreso"
             app:boxCornerRadiusBottomEnd="14dp"
             app:boxCornerRadiusBottomStart="14dp"
             app:boxCornerRadiusTopEnd="14dp"
@@ -148,19 +113,6 @@
             android:layout_height="56dp"
             android:layout_marginTop="22dp"
             android:text="@string/btn_guardar" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnBorrar"
-            style="@style/Widget.Material3.Button.TextButton"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="6dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="@string/borrar_gasto"
-            android:textAllCaps="false"
-            android:textColor="@color/rojo"
-            android:textSize="15sp"
-            android:visibility="gone" />
 
     </LinearLayout>
 

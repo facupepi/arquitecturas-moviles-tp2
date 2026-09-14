@@ -93,6 +93,20 @@
 
     </FrameLayout>
 
+    <!-- Se puede mirar la aplicación sin dar ninguna cuenta. Lo que se cargue así
+         no se pierde: al entrar con Google después, se conserva. -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnProbar"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginTop="6dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/btn_probar"
+        android:textAllCaps="false"
+        android:textColor="@color/texto"
+        android:textSize="15sp" />
+
     <!-- Sólo aparece si el teléfono no tiene ninguna cuenta de Google. -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnAgregarCuenta"

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:paddingBottom="96dp">
+        android:paddingBottom="150dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,8 +22,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/fondo"
-                app:navigationIcon="@drawable/ic_volver"
-                app:navigationIconTint="@color/texto"
                 app:title="@string/categorias"
                 app:titleCentered="false"
                 app:titleTextAppearance="@style/Texto.Titulo" />
@@ -79,7 +77,7 @@
         android:layout_width="wrap_content"
         android:layout_height="58dp"
         android:layout_gravity="bottom|center_horizontal"
-        android:layout_margin="22dp"
+        android:layout_marginBottom="86dp"
         android:fontFamily="@font/poppins_semibold"
         android:text="@string/btn_nueva_categoria"
         android:textAllCaps="false"
@@ -90,5 +88,9 @@
         app:elevation="6dp"
         app:icon="@drawable/ic_agregar"
         app:iconTint="@color/blanco" />
+
+    <include
+        android:id="@+id/navegacion"
+        layout="@layout/barra_navegacion" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

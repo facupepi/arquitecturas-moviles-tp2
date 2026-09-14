@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android 13 en adelante necesita esta lista para saber en qué idiomas está la
+     aplicación. Sin ella ignora el pedido de usar español. -->
+<locale-config xmlns:android="http://schemas.android.com/apk/res/android">
+    <locale android:name="es-AR" />
+</locale-config>

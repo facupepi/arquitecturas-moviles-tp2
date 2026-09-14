@@ -4,6 +4,8 @@
     <color name="verde">#12674B</color>
     <color name="verde_oscuro">#0A4432</color>
     <color name="verde_suave">#E4F1EB</color>
+    <!-- Sobre el fondo oscuro del aviso, el verde de marca no se lee. -->
+    <color name="verde_claro">#7BD7AE</color>
 
     <!-- Fondo apenas teñido de verde, para que el blanco de las tarjetas se despegue. -->
     <color name="fondo">#F6F8F7</color>

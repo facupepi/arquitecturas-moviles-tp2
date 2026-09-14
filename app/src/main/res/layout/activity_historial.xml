@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- La lista desplaza por su cuenta, no dentro de otro contenedor.
+     Metida en un NestedScrollView había que apagarle el reciclado, y entonces
+     armaba de una vez una fila por cada movimiento del período. Así reutiliza
+     las que salen de pantalla y da igual que haya diez o mil. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fondo"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/barra"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/fondo"
+        app:navigationIcon="@drawable/ic_volver"
+        app:navigationIconTint="@color/texto"
+        app:titleTextAppearance="@style/Texto.Titulo" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="20dp"
+        android:hint="@string/buscar_gasto"
+        app:boxCornerRadiusBottomEnd="14dp"
+        app:boxCornerRadiusBottomStart="14dp"
+        app:boxCornerRadiusTopEnd="14dp"
+        app:boxCornerRadiusTopStart="14dp"
+        app:startIconDrawable="@drawable/ic_buscar">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etBuscar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:maxLines="1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tvResumen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        android:textAppearance="@style/Texto.Seccion"
+        tools:text="32 MOVIMIENTOS · $284.000" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lista"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="20dp"
+        android:scrollbars="vertical"
+        tools:itemCount="8"
+        tools:listitem="@layout/item_gasto" />
+
+    <TextView
+        android:id="@+id/vacio"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:paddingTop="40dp"
+        android:text="@string/sin_resultados"
+        android:textAlignment="center"
+        android:textAppearance="@style/Texto.Apoyo"
+        android:visibility="gone" />
+
+</LinearLayout>

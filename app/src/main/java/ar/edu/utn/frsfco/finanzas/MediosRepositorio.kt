@@ -5,14 +5,14 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 
 /**
- * Guarda las categorías de cada usuario.
+ * Guarda los medios de pago de cada usuario.
  *
- *     usuarios/{uid}/categorias/{categoria}
+ *     usuarios/{uid}/medios/{medio}
  *
- * La primera vez que alguien entra se siembran cinco, para que la aplicación sirva
- * desde el arranque sin obligar a configurar nada.
+ * La primera vez que alguien entra se siembran los tres habituales, con las mismas
+ * claves que ya traían los gastos cargados, para que ninguno quede sin medio.
  */
-class CategoriasRepositorio {
+class MediosRepositorio {
 
     private val base = FirebaseFirestore.getInstance()
     private val auth = FirebaseAuth.getInstance()
@@ -20,41 +20,41 @@ class CategoriasRepositorio {
     private fun coleccion() = base
         .collection("usuarios")
         .document(auth.currentUser?.uid ?: error("no hay sesión abierta"))
-        .collection("categorias")
+        .collection("medios")
 
-    /** Crea las categorías iniciales si el usuario todavía no tiene ninguna. */
+    /** Crea los medios iniciales si el usuario todavía no tiene ninguno. */
     fun sembrarSiHaceFalta() {
-        // Alcanza con pedir una: si aparece, es que ya están sembradas.
+        // Alcanza con pedir uno: si aparece, es que ya están sembrados.
         coleccion().limit(1).get().addOnSuccessListener { resultado ->
             if (!resultado.isEmpty) return@addOnSuccessListener
 
             val lote = base.batch()
-            Categoria.iniciales().forEach { cat ->
-                lote.set(coleccion().document(cat.id), aMapa(cat))
+            Medio.iniciales().forEach { medio ->
+                lote.set(coleccion().document(medio.id), aMapa(medio))
             }
             lote.commit()
         }
     }
 
-    fun escuchar(alCambiar: (List<Categoria>) -> Unit): ListenerRegistration =
+    fun escuchar(alCambiar: (List<Medio>) -> Unit): ListenerRegistration =
         coleccion().addSnapshotListener { documentos, error ->
             if (error != null || documentos == null) return@addSnapshotListener
             alCambiar(documentos.map { doc ->
-                Categoria(
+                Medio(
                     id = doc.id,
                     nombre = doc.getString("nombre").orEmpty(),
                     color = doc.getString("color") ?: "#5C7CFA",
-                    icono = doc.getString("icono") ?: "otros",
+                    icono = doc.getString("icono") ?: "billetera",
                     orden = (doc.getLong("orden") ?: 0L).toInt()
                 )
             }.sortedBy { it.orden })
         }
 
-    fun guardar(categoria: Categoria) {
-        if (categoria.id.isBlank()) {
-            coleccion().add(aMapa(categoria))
+    fun guardar(medio: Medio) {
+        if (medio.id.isBlank()) {
+            coleccion().add(aMapa(medio))
         } else {
-            coleccion().document(categoria.id).set(aMapa(categoria))
+            coleccion().document(medio.id).set(aMapa(medio))
         }
     }
 
@@ -62,10 +62,10 @@ class CategoriasRepositorio {
         coleccion().document(id).delete()
     }
 
-    private fun aMapa(c: Categoria) = hashMapOf(
-        "nombre" to c.nombre.trim(),
-        "color" to c.color,
-        "icono" to c.icono,
-        "orden" to c.orden
+    private fun aMapa(m: Medio) = hashMapOf(
+        "nombre" to m.nombre.trim(),
+        "color" to m.color,
+        "icono" to m.icono,
+        "orden" to m.orden
     )
 }

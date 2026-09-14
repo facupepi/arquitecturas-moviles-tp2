@@ -1,77 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Los textos se reescribieron en un registro más formal después de las pruebas.
+     La versión anterior era demasiado coloquial y varios términos no se entendían:
+     se reemplazaron las expresiones de uso corriente por las de finanzas que la
+     gente ya conoce del resumen bancario. -->
 <resources>
     <string name="app_name">Mis Gastos</string>
 
     <!-- Entrada -->
-    <string name="lema">Anotá lo que gastás</string>
-    <string name="bajada">Cargá un gasto en segundos y mirá cuánto llevás en el mes.</string>
-    <string name="btn_entrar">Entrar con Google</string>
-    <string name="sin_cuentas">No hay ninguna cuenta de Google en este teléfono</string>
-    <string name="error_entrada">No se pudo entrar. Probá de nuevo.</string>
-    <string name="btn_agregar_cuenta">Agregar una cuenta de Google al teléfono</string>
-    <string name="aviso_privacidad">Tus gastos quedan guardados en tu cuenta y sólo los ves vos.</string>
+    <string name="lema">Registrá tus gastos</string>
+    <string name="bajada">Anotá cada gasto y consultá el resumen del mes por categoría.</string>
+    <string name="btn_entrar">Ingresar con Google</string>
+    <string name="sin_cuentas">No hay ninguna cuenta de Google configurada en este dispositivo</string>
+    <string name="error_entrada">No se pudo ingresar. Intentá nuevamente.</string>
+    <string name="btn_agregar_cuenta">Agregar una cuenta de Google al dispositivo</string>
+    <string name="btn_probar">Ingresar sin cuenta</string>
+    <string name="error_invitado">No se pudo ingresar sin cuenta. Probá con Google.</string>
+    <string name="cuenta_ya_existia">Se restauró tu cuenta anterior, con los gastos ya registrados.</string>
+    <string name="aviso_privacidad">Los datos se guardan en tu cuenta y son privados.</string>
+    <string name="sin_pantalla_cuentas">Este dispositivo no permite agregar cuentas desde la aplicación</string>
 
     <!-- Resumen -->
     <string name="titulo_resumen">Mis gastos</string>
-    <string name="btn_agregar">Agregar gasto</string>
-    <string name="btn_salir">Cerrar sesión</string>
-    <string name="sin_pantalla_cuentas">Este teléfono no permite agregar cuentas desde acá</string>
-
-    <!-- Resumen -->
     <string name="saludo">Hola, %1$s</string>
-    <string name="gastado_este_mes">Gastado este mes</string>
+    <string name="btn_agregar">Registrar gasto</string>
+    <string name="gastado_este_mes">Total del mes</string>
+    <string name="gastado_mes_pasado">Total del mes pasado</string>
+    <string name="gastado_este_anio">Total del año</string>
+    <string name="gastado_total">Total acumulado</string>
+    <string name="saldo_disponible">Saldo disponible</string>
+    <string name="rotulo_ingresos">Ingresos</string>
+    <string name="rotulo_gastos">Gastos</string>
     <plurals name="cantidad_gastos">
-        <item quantity="one">%d gasto registrado</item>
-        <item quantity="other">%d gastos registrados</item>
+        <item quantity="one">%d movimiento registrado</item>
+        <item quantity="other">%d movimientos registrados</item>
     </plurals>
-    <string name="ultimos_gastos">Últimos gastos</string>
-    <plurals name="resto_gastos">
-        <item quantity="one">y %d gasto más</item>
-        <item quantity="other">y %d gastos más</item>
-    </plurals>
+    <string name="ultimos_gastos">Movimientos recientes</string>
 
-    <!-- Tramo de tiempo del resumen -->
+    <!-- Período del resumen -->
     <string name="periodo_este_mes">Este mes</string>
     <string name="periodo_mes_pasado">Mes pasado</string>
     <string name="periodo_este_anio">Este año</string>
     <string name="periodo_todo">Todo</string>
-    <string name="gastado_mes_pasado">Gastado el mes pasado</string>
-    <string name="gastado_este_anio">Gastado este año</string>
-    <string name="gastado_total">Total gastado</string>
-    <string name="sin_periodo_titulo">Nada por acá</string>
-    <string name="sin_periodo_bajada">No anotaste gastos en este tramo. Probá con otro.</string>
+    <string name="sin_periodo_titulo">Sin movimientos</string>
+    <string name="sin_periodo_bajada">No hay gastos registrados en este período. Probá con otro.</string>
     <string name="hoy">Hoy</string>
     <string name="ayer">Ayer</string>
 
-    <!-- Carga de un gasto -->
+    <!-- Menú de navegación -->
+    <string name="nav_resumen">Resumen</string>
+    <string name="nav_categorias">Categorías</string>
+    <string name="nav_ajustes">Ajustes</string>
+
+    <!-- Registro de un gasto -->
     <string name="nuevo_gasto">Nuevo gasto</string>
     <string name="signo_pesos">$</string>
     <string name="cero">0</string>
     <string name="categoria">Categoría</string>
     <string name="detalle_opcional">Detalle (opcional)</string>
     <string name="btn_guardar">Guardar</string>
-    <string name="monto_invalido">Escribí un monto</string>
-    <string name="error_guardar">No se pudo guardar. Revisá la conexión.</string>
-    <string name="gasto_guardado">Gasto guardado</string>
+    <string name="cuando_fue">Fecha del gasto</string>
+    <string name="elegi_categoria">Seleccioná una categoría</string>
+    <string name="medio_pago">Medio de pago</string>
+    <string name="medios_pago">MEDIOS DE PAGO</string>
+    <string name="medios_ayuda">Definí con qué pagás: efectivo, débito, una billetera virtual o la tarjeta que uses.</string>
+    <string name="agregar_medio">Agregar medio de pago</string>
+    <string name="sin_medios">Todavía no cargaste ningún medio de pago.</string>
+    <string name="nombre_medio">Nombre, por ejemplo Billetera virtual</string>
+    <string name="nuevo_medio">Nuevo medio de pago</string>
+    <string name="editar_medio">Editar medio de pago</string>
+    <string name="medio_guardado">Medio de pago guardado</string>
+    <string name="medio_borrado">Medio de pago eliminado</string>
+    <string name="sin_medios_aviso">Antes de registrar un gasto tenés que definir al menos un medio de pago.</string>
+    <string name="monto_invalido">Ingresá un monto válido</string>
+    <string name="error_guardar">No se pudo guardar. Verificá la conexión.</string>
+    <string name="gasto_guardado">Gasto registrado</string>
 
-    <!-- Gráfico y estado vacío -->
-    <string name="en_que_se_fue">En qué se fue</string>
+    <!-- Distribución y estado vacío -->
+    <string name="en_que_se_fue">Distribución por categoría</string>
     <string name="porcentaje">%1$d%%</string>
-    <string name="chanchito_titulo">El chanchito está vacío</string>
-    <string name="chanchito_bajada">Cargá tu primer gasto y vas a ver acá en qué se te va la plata.</string>
+    <string name="chanchito_titulo">Todavía no hay gastos</string>
+    <string name="chanchito_bajada">Registrá el primero y vas a ver acá cómo se reparte entre las categorías.</string>
 
-    <!-- Edición y borrado -->
+    <!-- Edición y eliminación -->
     <string name="editar_gasto">Editar gasto</string>
     <string name="gasto_actualizado">Gasto actualizado</string>
-    <string name="borrar_gasto">Borrar gasto</string>
-    <string name="borrar_gasto_aviso">Se va a quitar del resumen del mes. No se puede deshacer.</string>
-    <string name="borrar">Borrar</string>
+    <string name="borrar_gasto">Eliminar gasto</string>
+    <string name="borrar_gasto_aviso">Se va a quitar del resumen del período. Esta acción no se puede deshacer.</string>
+    <string name="borrar">Eliminar</string>
     <string name="cancelar">Cancelar</string>
-    <string name="gasto_borrado">Gasto borrado</string>
-    <string name="sin_categorias">Creá una categoría antes de cargar un gasto</string>
+    <string name="gasto_borrado">Gasto eliminado</string>
+    <string name="deshacer">Deshacer</string>
+    <string name="sin_categorias">Creá una categoría antes de registrar un gasto</string>
 
     <!-- Categorías -->
     <string name="categorias">Categorías</string>
+    <string name="categorias_ayuda">Seleccioná una categoría para modificar su nombre, color o ícono.</string>
     <string name="nueva_categoria">Nueva categoría</string>
     <string name="editar_categoria">Editar categoría</string>
     <string name="nombre_categoria">Nombre</string>
@@ -79,9 +102,61 @@
     <string name="icono">Ícono</string>
     <string name="btn_nueva_categoria">Agregar categoría</string>
     <string name="categoria_guardada">Categoría guardada</string>
-    <string name="categoria_borrada">Categoría borrada</string>
-    <string name="borrar_categoria_aviso">Los gastos que la usaban quedan sin categoría.</string>
-    <string name="nombre_vacio">Poné un nombre</string>
-    <string name="sin_categorias_aun">Todavía no tenés categorías.</string>
-    <string name="categorias_ayuda">Tocá una para cambiarle el nombre, el color o el ícono.</string>
+    <string name="categoria_borrada">Categoría eliminada</string>
+    <string name="borrar_categoria_aviso">Los gastos asociados van a quedar sin categoría.</string>
+    <string name="nombre_vacio">Ingresá un nombre</string>
+    <string name="sin_categorias_aun">Todavía no hay categorías.</string>
+
+    <!-- Historial -->
+    <string name="buscar_gasto">Buscar por detalle o categoría</string>
+    <string name="sin_resultados">No se encontraron movimientos.</string>
+    <string name="quitar_filtro">Ver todos</string>
+    <plurals name="ver_todos">
+        <item quantity="one">Ver el movimiento</item>
+        <item quantity="other">Ver los %d movimientos</item>
+    </plurals>
+    <plurals name="historial_resumen">
+        <item quantity="one">%1$d movimiento por un total de %2$s</item>
+        <item quantity="other">%1$d movimientos por un total de %2$s</item>
+    </plurals>
+
+    <!-- Ajustes -->
+    <string name="ajustes">Ajustes</string>
+    <string name="ingresos">Ingresos</string>
+    <string name="ingresos_ayuda">Registrá tu sueldo y demás ingresos para conocer el saldo disponible, no sólo lo gastado.</string>
+    <string name="ingreso">Ingreso</string>
+    <string name="nuevo_ingreso">Nuevo ingreso</string>
+    <string name="editar_ingreso">Editar ingreso</string>
+    <string name="agregar_ingreso">Agregar ingreso</string>
+    <string name="detalle_ingreso">Detalle, por ejemplo Sueldo</string>
+    <string name="sin_ingresos">Todavía no hay ingresos registrados.</string>
+    <string name="ingreso_guardado">Ingreso registrado</string>
+    <string name="ingreso_borrado">Ingreso eliminado</string>
+
+    <string name="gastos_fijos">Gastos recurrentes</string>
+    <string name="fijos_ayuda">Gastos que se repiten todos los meses, como el alquiler o las expensas. Se registran automáticamente en la fecha indicada.</string>
+    <string name="nuevo_fijo">Nuevo gasto recurrente</string>
+    <string name="editar_fijo">Editar gasto recurrente</string>
+    <string name="agregar_fijo">Agregar gasto recurrente</string>
+    <string name="nombre_fijo">Nombre, por ejemplo Alquiler</string>
+    <string name="monto">Monto</string>
+    <string name="dia_del_mes">Día</string>
+    <string name="dia_invalido">Del 1 al 31</string>
+    <string name="todos_los_dias">Cada día %1$d del mes</string>
+    <string name="sin_fijos">Todavía no hay gastos recurrentes.</string>
+    <string name="fijo_guardado">Gasto recurrente guardado</string>
+    <string name="fijo_borrado">Gasto recurrente eliminado</string>
+
+    <string name="tus_datos">Tus datos</string>
+    <string name="exportar">Exportar movimientos</string>
+    <string name="exportar_asunto">Mis gastos</string>
+    <string name="sin_gastos_exportar">No hay movimientos para exportar</string>
+    <string name="btn_salir">Cerrar sesión</string>
+    <string name="salir_aviso">Los datos quedan guardados y se restauran al volver a ingresar.</string>
+    <string name="salir_invitado_aviso">Estás usando la aplicación sin cuenta. Si cerrás la sesión, los datos registrados se pierden.</string>
+
+    <string name="invitado_titulo">Sesión sin cuenta</string>
+    <string name="invitado_bajada">Ingresá con Google para conservar los datos registrados y acceder a ellos desde cualquier dispositivo.</string>
+    <string name="cuenta_vinculada">Los datos quedaron asociados a tu cuenta</string>
+
 </resources>

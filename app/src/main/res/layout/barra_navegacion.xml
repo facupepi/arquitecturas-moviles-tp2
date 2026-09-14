@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Menú de abajo. Reemplaza a los dos botones de ícono que había en el encabezado,
+     que sin texto no se entendían y estaban tan juntos que se tocaba el equivocado. -->
+<com.google.android.material.bottomnavigation.BottomNavigationView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/barraNavegacion"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="@color/superficie"
+    app:elevation="0dp"
+    app:labelVisibilityMode="labeled"
+    app:menu="@menu/navegacion" />

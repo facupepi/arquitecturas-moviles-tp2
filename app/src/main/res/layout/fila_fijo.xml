@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/fondoIcono"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        app:cardCornerRadius="14dp"
+        app:cardElevation="0dp">
+
+        <ImageView
+            android:id="@+id/icono"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:contentDescription="@null"
+            tools:src="@drawable/ic_servicios" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_medium"
+            android:maxLines="1"
+            android:textColor="@color/texto"
+            android:textSize="15sp"
+            tools:text="Alquiler" />
+
+        <TextView
+            android:id="@+id/tvDia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Texto.Apoyo"
+            tools:text="Todos los 5" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvMonto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="@color/texto"
+        android:textSize="16sp"
+        tools:text="$180.000" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBorrar"
+        style="@style/Widget.Material3.Button.IconButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="4dp"
+        android:contentDescription="@string/borrar"
+        app:icon="@drawable/ic_tacho"
+        app:iconSize="18dp"
+        app:iconTint="@color/texto_suave" />
+
+</LinearLayout>

@@ -6,33 +6,29 @@ import android.provider.Settings
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.credentials.CredentialManager
-import androidx.credentials.GetCredentialRequest
 import androidx.credentials.exceptions.GetCredentialCancellationException
 import androidx.credentials.exceptions.GetCredentialException
 import androidx.credentials.exceptions.NoCredentialException
 import androidx.lifecycle.lifecycleScope
 import ar.edu.utn.frsfco.finanzas.databinding.ActivityLoginBinding
-import com.google.android.libraries.identity.googleid.GetGoogleIdOption
-import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
 /**
  * Pantalla de entrada.
  *
- * Si ya hay una sesión abierta pasa directo al resumen. Si no, ofrece entrar con
- * una cuenta de Google usando el administrador de credenciales de Android.
+ * Si ya hay una sesión abierta pasa directo al resumen. Si no, ofrece entrar con una
+ * cuenta de Google, o probar la aplicación sin dar ninguna cuenta. Pedir la cuenta
+ * antes de dejar ver nada hacía que la gente cerrara la aplicación en la primera
+ * pantalla.
  */
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : PantallaBase() {
 
     private lateinit var binding: ActivityLoginBinding
     private val auth by lazy { FirebaseAuth.getInstance() }
-    private val credenciales by lazy { CredentialManager.create(this) }
+    private val acceso by lazy { AccesoGoogle(this) }
 
     companion object {
         private const val TAG = "TP2-Login"
@@ -44,6 +40,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnEntrar.setOnClickListener { entrarConGoogle() }
+        binding.btnProbar.setOnClickListener { probarSinCuenta() }
         binding.btnAgregarCuenta.setOnClickListener { abrirAltaDeCuenta() }
     }
 
@@ -55,12 +52,35 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Abre una sesión sin cuenta para poder probar.
+     *
+     * Los gastos quedan guardados igual, colgando de un identificador anónimo. Si más
+     * adelante la persona entra con Google, ese mismo identificador se conserva y no
+     * pierde nada de lo que cargó.
+     */
+    private fun probarSinCuenta() {
+        mostrarEspera(true)
+        lifecycleScope.launch {
+            try {
+                auth.signInAnonymously().await()
+                Log.d(TAG, "entró sin cuenta")
+                irAlResumen()
+            } catch (e: Exception) {
+                mostrarEspera(false)
+                Log.e(TAG, "no se pudo entrar sin cuenta", e)
+                avisar(getString(R.string.error_invitado))
+            }
+        }
+    }
+
     private fun entrarConGoogle() {
         mostrarEspera(true)
         lifecycleScope.launch {
             try {
-                val credencial = pedirCuentaDeGoogle()
-                autenticarEnFirebase(credencial)
+                if (acceso.entrar() == AccesoGoogle.Resultado.YA_EXISTIA) {
+                    avisar(getString(R.string.cuenta_ya_existia))
+                }
                 irAlResumen()
             } catch (e: GetCredentialCancellationException) {
                 // El usuario cerró el selector de cuentas. No es un error.
@@ -82,34 +102,6 @@ class LoginActivity : AppCompatActivity() {
                 avisar(getString(R.string.error_entrada))
             }
         }
-    }
-
-    /**
-     * Le pide al sistema una cuenta de Google. El identificador que se envía es el
-     * cliente web del proyecto, que el complemento de Google Services genera a
-     * partir de google-services.json.
-     */
-    private suspend fun pedirCuentaDeGoogle(): GoogleIdTokenCredential {
-        val opcion = GetGoogleIdOption.Builder()
-            .setServerClientId(getString(R.string.default_web_client_id))
-            // En falso para que muestre todas las cuentas del teléfono, no sólo
-            // las que ya usaron esta aplicación.
-            .setFilterByAuthorizedAccounts(false)
-            .build()
-
-        val pedido = GetCredentialRequest.Builder()
-            .addCredentialOption(opcion)
-            .build()
-
-        val respuesta = credenciales.getCredential(this, pedido)
-        return GoogleIdTokenCredential.createFrom(respuesta.credential.data)
-    }
-
-    /** Cambia el identificador de Google por una sesión de Firebase. */
-    private suspend fun autenticarEnFirebase(credencial: GoogleIdTokenCredential) {
-        val paraFirebase = GoogleAuthProvider.getCredential(credencial.idToken, null)
-        val resultado = auth.signInWithCredential(paraFirebase).await()
-        Log.d(TAG, "sesión iniciada como ${resultado.user?.email}")
     }
 
     /**
@@ -147,6 +139,7 @@ class LoginActivity : AppCompatActivity() {
     private fun mostrarEspera(esperando: Boolean) {
         binding.progreso.visibility = if (esperando) View.VISIBLE else View.GONE
         binding.btnEntrar.isEnabled = !esperando
+        binding.btnProbar.isEnabled = !esperando
         binding.btnEntrar.text = if (esperando) "" else getString(R.string.btn_entrar)
         binding.btnEntrar.icon = if (esperando) {
             null

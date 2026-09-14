@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:paddingTop="10dp"
@@ -38,9 +39,11 @@
             android:id="@+id/tvCategoria"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_semibold"
-            android:textColor="@color/texto"
-            android:textSize="15sp"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_medium"
+            android:maxLines="1"
+            android:textColor="@color/texto_suave"
+            android:textSize="14sp"
             tools:text="Comida" />
 
         <TextView
@@ -54,14 +57,32 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvMonto"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:textColor="@color/texto"
-        android:textSize="16sp"
-        tools:text="$8.400" />
+        android:gravity="end"
+        android:orientation="vertical">
+
+        <!-- El monto es lo que se viene a mirar, así que es lo más grande de la fila. -->
+        <TextView
+            android:id="@+id/tvMonto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/texto"
+            android:textSize="19sp"
+            tools:text="$8.400" />
+
+        <TextView
+            android:id="@+id/tvMedio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/texto_suave"
+            android:textSize="11sp"
+            tools:text="Efectivo" />
+
+    </LinearLayout>
 
 </LinearLayout>

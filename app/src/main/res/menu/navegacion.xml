@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navResumen"
+        android:icon="@drawable/ic_resumen"
+        android:title="@string/nav_resumen" />
+
+    <item
+        android:id="@+id/navCategorias"
+        android:icon="@drawable/ic_categorias"
+        android:title="@string/nav_categorias" />
+
+    <item
+        android:id="@+id/navAjustes"
+        android:icon="@drawable/ic_ajustes"
+        android:title="@string/nav_ajustes" />
+
+</menu>

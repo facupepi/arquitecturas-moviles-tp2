@@ -4,7 +4,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.Query
-import kotlinx.coroutines.tasks.await
 import java.util.Date
 
 /**
@@ -14,6 +13,10 @@ import java.util.Date
  *
  * Cada usuario tiene su propia colección, colgada de su identificador, de modo que
  * las reglas de seguridad puedan limitar el acceso a los datos propios.
+ *
+ * Ninguna escritura espera la confirmación del servidor. Firestore guarda primero en
+ * el teléfono y sincroniza cuando puede, así que esperar dejaba la pantalla trabada
+ * sin señal aunque el dato ya estuviera guardado.
  */
 class GastosRepositorio {
 
@@ -25,17 +28,22 @@ class GastosRepositorio {
         .document(auth.currentUser?.uid ?: error("no hay sesión abierta"))
         .collection("gastos")
 
-    suspend fun agregar(monto: Double, categoriaId: String, detalle: String, fecha: Date = Date()) {
-        coleccion().add(aMapa(monto, categoriaId, detalle, fecha)).await()
+    fun agregar(gasto: Gasto) {
+        coleccion().add(aMapa(gasto))
     }
 
     /** Reemplaza los datos de un gasto que el usuario corrigió. */
-    suspend fun actualizar(id: String, monto: Double, categoriaId: String, detalle: String, fecha: Date) {
-        coleccion().document(id).set(aMapa(monto, categoriaId, detalle, fecha)).await()
+    fun actualizar(gasto: Gasto) {
+        coleccion().document(gasto.id).set(aMapa(gasto))
     }
 
-    suspend fun borrar(id: String) {
-        coleccion().document(id).delete().await()
+    fun borrar(id: String) {
+        coleccion().document(id).delete()
+    }
+
+    /** Vuelve a guardar un gasto recién borrado, con su mismo identificador. */
+    fun restaurar(gasto: Gasto) {
+        coleccion().document(gasto.id).set(aMapa(gasto))
     }
 
     /**
@@ -56,16 +64,22 @@ class GastosRepositorio {
                         monto = doc.getDouble("monto") ?: 0.0,
                         categoriaId = doc.getString("categoria").orEmpty(),
                         detalle = doc.getString("detalle").orEmpty(),
-                        fecha = doc.getDate("fecha") ?: Date()
+                        fecha = doc.getDate("fecha") ?: Date(),
+                        // Los movimientos cargados antes guardaban la clave en "medioPago";
+                        // los medios sembrados usan esas mismas claves como id.
+                        medioId = (doc.getString("medioId")
+                            ?: doc.getString("medioPago")).orEmpty(),
+                        fijoId = doc.getString("fijoId").orEmpty()
                     )
                 })
             }
 
-    private fun aMapa(monto: Double, categoriaId: String, detalle: String, fecha: Date) =
-        hashMapOf(
-            "monto" to monto,
-            "categoria" to categoriaId,
-            "detalle" to detalle.trim(),
-            "fecha" to fecha
-        )
+    private fun aMapa(g: Gasto) = hashMapOf(
+        "monto" to g.monto,
+        "categoria" to g.categoriaId,
+        "detalle" to g.detalle.trim(),
+        "fecha" to g.fecha,
+        "medioId" to g.medioId,
+        "fijoId" to g.fijoId
+    )
 }
